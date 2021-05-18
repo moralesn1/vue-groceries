@@ -1,26 +1,25 @@
 <template>
 <div class="container">
   <h3>Grocery List</h3>
-  <AddItem />
+    <AddItem />
+    <Items :items="items"/>
 </div>
 </template>
 
 <script>
 import AddItem from '@/components/AddItem.vue'
+import Items from "@/components/Items.vue"
 
 export default {
-  name: 'HelloWorld',
+  name: 'Groceries',
   components: {
-    AddItem
+    AddItem,
+    Items
   },
   props: {
-  },
-  data() {
-    return {
-      counter: 0
+    items: {
+      type: Array
     }
-  },
-  methods: {
   }
 }
 </script>

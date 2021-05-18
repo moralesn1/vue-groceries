@@ -1,24 +1,61 @@
 <template>
-  <h3>List Items</h3>
-  <form action="submit" class="add-form">
+  <form @submit="onSubmit" action="submit" class="add-form">
     <div class="form-control">
       <label for="grocery">Add Item</label>
-      <input type="text">
+      <input 
+        v-model="item"
+        name="item"
+        type="text"
+      />
     </div>
     <div class="form-control">
       <label for="amount">Amount</label>
-      <input type="text">
+      <input 
+        v-model="amount"
+        name="amount"
+        type="text"
+      />
     </div>
-    <input type="submit" value="Add Item" class="btn-block">
-    
+    <input type="submit" value="Add Item" class="btn btn-block">
   </form>
 
   
 </template>
 
 <script>
+import Button from './Buttons/Button'
+
 export default {
-  name: 'AddItem'
+  name: 'AddItem',
+  components: {
+    Button
+  },
+  data() {
+    return {
+      item: this.item,
+      amount: this.amount
+    }
+  },
+  methods: {
+    onSubmit(e) {
+      e.preventDefault()
+
+      if (!this.item) {
+        alert('Please add an item')
+        return
+      }
+
+      const newItem = {
+        item: this.item,
+        amount: this.amount
+      }
+
+      console.log(newItem)
+
+      this.item = '',
+      this.amount = ''
+    }
+  }
 }
 </script>
 
@@ -35,7 +72,6 @@ export default {
 .form-control input {
   width: 100%;
   height: 40px;
-  margin: 5px;
   padding: 3px 7px;
   font-size: 17px;
 }
