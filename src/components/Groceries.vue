@@ -1,7 +1,5 @@
 <template>
-<div class="container">
-  <h3>Grocery List</h3>
-    <AddItem />
+<div class="home">
     <Items :items="items"/>
 </div>
 </template>
@@ -20,13 +18,15 @@ export default {
     items: {
       type: Array
     }
-  }
+  },
+  method: {
+  },
+  // emits: ['add-item']
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 .container {
   max-width: 500px;
   margin: 30px auto;
@@ -39,7 +39,6 @@ export default {
 
 h3 {
   display: flex;
-  justify-content: center;
 }
 
 

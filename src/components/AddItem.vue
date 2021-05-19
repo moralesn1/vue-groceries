@@ -49,8 +49,7 @@ export default {
         item: this.item,
         amount: this.amount
       }
-
-      console.log(newItem)
+      this.$emit('add-item', newItem)
 
       this.item = '',
       this.amount = ''

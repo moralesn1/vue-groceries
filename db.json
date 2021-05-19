@@ -8,6 +8,21 @@
     {
       "id": "2",
       "item": "Item 2 without an amount"
+    },
+    {
+      "item": "test ",
+      "amount": "cool",
+      "id": "MMY_lJ0"
+    },
+    {
+      "item": "omfg",
+      "amount": "it works",
+      "id": "Zw-5iJD"
+    },
+    {
+      "item": "add item",
+      "amount": "coooolios",
+      "id": "BjthmXd"
     }
   ]
 }
