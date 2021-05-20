@@ -2,22 +2,23 @@
   <div class="container">
     <h3>Grocery List</h3>
     <AddItem @add-item="addItem" />
-    <Groceries :items="items" />
+    <Items 
+      :items="items" 
+      @delete-item="deleteItem"
+    />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Groceries from '@/components/Groceries.vue'
+import Items from '@/components/Items.vue'
 import AddItem from '@/components/AddItem.vue'
-
-
 
 export default {
   name: 'Home',
   components: {
-    Groceries,
-    AddItem
+    Items,
+    AddItem,
   },
   data() {
     return {
@@ -38,6 +39,20 @@ export default {
 
     this.items = [...this.items, data]
 
+  },
+  async deleteItem(id) {
+    console.log
+    if(confirm('Are you sure?')) {
+      const response = await fetch(`http://localhost:5000/items/${id}`, {
+        method: 'DELETE'
+      })
+      
+      response.status === 200 ? 
+        (this.items = this.items.filter((item) => item.id !== id))
+        :
+        alert('Error deleting item')
+
+    }
   },
   async fetchItems() {
     const response = await fetch('http://localhost:5000/items')

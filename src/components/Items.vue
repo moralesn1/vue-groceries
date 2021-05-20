@@ -1,6 +1,9 @@
 <template>
-  <div :key="item.id" v-for="item in items">
-    <Item :item="item" />
+  <div class="items-container" :key="item.id" v-for="item in items">
+    <Item 
+      :item="item" 
+      @delete-item="$emit('delete-item', item.id)"
+    />
     
   </div>
 </template>
@@ -17,6 +20,10 @@ export default {
     items: {
       type: Array
     }
-  }
+  },
+  emits: ['delete-item']
 }
 </script>
+
+<style scoped>
+</style>
