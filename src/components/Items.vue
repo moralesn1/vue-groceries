@@ -3,6 +3,7 @@
     <Item 
       :item="item" 
       @delete-item="$emit('delete-item', item.id)"
+      @edit-item="$emit('edit-item', item)"
     />
     
   </div>
@@ -21,7 +22,7 @@ export default {
       type: Array
     }
   },
-  emits: ['delete-item']
+  emits: ['delete-item', 'edit-item']
 }
 </script>
 

@@ -33,8 +33,17 @@ export default {
   data() {
     return {
       item: this.item,
-      amount: this.amount
+      amount: this.amount,
     }
+  },
+  props: {
+    updatedItem: {
+      type: Object
+    }
+  },
+  emits: ['updatedItem'],
+  mounted() {
+    console.log('this got hit ')
   },
   methods: {
     onSubmit(e) {

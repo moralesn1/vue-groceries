@@ -1,10 +1,14 @@
 <template>
   <div class="container">
     <h3>Grocery List</h3>
-    <AddItem @add-item="addItem" />
+    <AddItem 
+      @add-item="addItem"
+      :updatedItem="updatedItem"
+    />
     <Items 
       :items="items" 
       @delete-item="deleteItem"
+      @edit-item="editItem"
     />
   </div>
 </template>
@@ -22,9 +26,15 @@ export default {
   },
   data() {
     return {
-      items: []
+      items: [],
+      updatedItem: []
     }
   },
+  props: {
+    item: {
+      type: Object
+    }
+  },                           
   methods: {
   async addItem(item) {
     const response = await fetch('http://localhost:5000/items', {
@@ -39,6 +49,11 @@ export default {
 
     this.items = [...this.items, data]
 
+  },
+  editItem(item) {
+    const singleItem = item;
+    this.updatedItem = [...this.updatedItem, singleItem];
+    console.log(singleItem)
   },
   async deleteItem(id) {
     console.log
