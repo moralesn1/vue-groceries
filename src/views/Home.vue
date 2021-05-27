@@ -3,7 +3,9 @@
     <h3>Grocery List</h3>
     <AddItem 
       @add-item="addItem"
-      :updatedItem="updatedItem"
+      @update-item="updateItem"
+      :currentItem="currentItem"
+      :showEditForm="showEditForm"
     />
     <Items 
       :items="items" 
@@ -27,7 +29,8 @@ export default {
   data() {
     return {
       items: [],
-      updatedItem: []
+      showEditForm: false,
+      currentItem: {}
     }
   },
   props: {
@@ -51,12 +54,31 @@ export default {
 
   },
   editItem(item) {
+
     const singleItem = item;
-    this.updatedItem = [...this.updatedItem, singleItem];
+    this.currentItem = singleItem;
+    this.showEditForm = !this.showEditForm
     console.log(singleItem)
+
+  },
+  async updateItem(id) {
+    try {
+      const itemToEdit = await this.fetchItem(id)
+      console.log(itemToEdit)
+      const response = await fetch(`http://localhost:5000/items/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(item)
+      })
+      const data = await response.json();
+      return data
+    } catch(e) {
+      console.log(e)
+    }
   },
   async deleteItem(id) {
-    console.log
     if(confirm('Are you sure?')) {
       const response = await fetch(`http://localhost:5000/items/${id}`, {
         method: 'DELETE'
@@ -74,6 +96,11 @@ export default {
     const data = await response.json()
     return data
     }
+  },
+  async fetchItem(id) {
+    const response = await fetch(`http://localhost:5000/items/${id}`)
+    const data = await response.json()
+    return data
   },
   async created() {
     this.items = await this.fetchItems()

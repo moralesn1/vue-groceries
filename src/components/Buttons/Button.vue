@@ -1,5 +1,5 @@
 <template>
-  <button @click="onClick" class="btn">{{ btnText }} </button>  
+  <button @click="onClick" :style="{background: color}" class="btn">{{ btnText }} </button>  
 </template>
 
 <script>
@@ -8,6 +8,7 @@ export default {
   props: {
     btnText: {
       type: String,
+      color: String
     },
     color: {
       type: String

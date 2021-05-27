@@ -5,7 +5,6 @@
       @delete-item="$emit('delete-item', item.id)"
       @edit-item="$emit('edit-item', item)"
     />
-    
   </div>
 </template>
 
