@@ -4,8 +4,8 @@
     <AddItem 
       @add-item="addItem"
       @update-item="updateItem"
+      @onSuccess="showEditForm = false"
       :currentItem="currentItem"
-      :showEditForm="showEditForm"
     />
     <Items 
       :items="items" 
@@ -58,14 +58,11 @@ export default {
     const singleItem = item;
     this.currentItem = singleItem;
     this.showEditForm = !this.showEditForm
-    console.log(singleItem)
 
   },
-  async updateItem(id) {
+  async updateItem(item) {
     try {
-      const itemToEdit = await this.fetchItem(id)
-      console.log(itemToEdit)
-      const response = await fetch(`http://localhost:5000/items/${id}`, {
+      const response = await fetch(`http://localhost:5000/items/${item.id}`, {
       method: 'PUT',
       headers: {
         'Content-type': 'application/json'
@@ -96,11 +93,6 @@ export default {
     const data = await response.json()
     return data
     }
-  },
-  async fetchItem(id) {
-    const response = await fetch(`http://localhost:5000/items/${id}`)
-    const data = await response.json()
-    return data
   },
   async created() {
     this.items = await this.fetchItems()

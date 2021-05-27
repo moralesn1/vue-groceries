@@ -1,5 +1,6 @@
 <template>
-  <form v-if="showEditForm" 
+  <form 
+    v-if="showEditForm" 
     :currentItem="currentItem" 
     @submit="onEdit" 
     action="submit" class="add-form"
@@ -108,16 +109,15 @@ export default {
       }
 
       const updatedItem = {
+        id: this.currentItem.id,
         item: this.currentItem.item,
         amount: this.currentItem.amount
       }
-      console.log(updatedItem)
-      this.item = ''
-      this.amount = ''
       this.$emit('update-item', updatedItem)
+      this.$emit('onSuccess')
       
       // this.$emit('update-item', updatedItem)
-      // this.showEditForm = !this.showEditForm
+      this.showEditForm = !this.showEditForm
 
     }
   }
