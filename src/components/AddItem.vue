@@ -1,6 +1,6 @@
 <template>
   <form 
-    v-if="showEditForm" 
+    v-if="toggleEditForm" 
     :currentItem="currentItem" 
     @submit="onEdit" 
     action="submit" class="add-form"
@@ -54,34 +54,30 @@
       class="btn btn-block submit"
     >
   </form>
-  {{currentItem}}
 </template>
 
 <script>
-import Button from './Buttons/Button'
 
 export default {
   name: 'AddItem',
-  components: {
-    Button
-  },
   data() {
     return {
       item: this.item,
       amount: this.amount,
       editItem: this.currentItem.item,
       editAmount: this.currentItem.amount,
+      toggleForm: this.toggleEditForm
     }
   },
   props: {
     currentItem: {
       type: Object
     },
-    showEditForm: {
+    toggleEditForm: {
       type: Boolean
-    }
+    },
   },
-  emits: ['currentItem', 'add-item', 'update-item'],
+  emits: ['currentItem', 'add-item', 'update-item', 'onSuccess'],
   methods: {
     onSubmit(e) {
       e.preventDefault()
@@ -113,11 +109,9 @@ export default {
         item: this.currentItem.item,
         amount: this.currentItem.amount
       }
+
       this.$emit('update-item', updatedItem)
-      this.$emit('onSuccess')
-      
-      // this.$emit('update-item', updatedItem)
-      this.showEditForm = !this.showEditForm
+      e.target.reset()
 
     }
   }
@@ -153,12 +147,16 @@ export default {
   height: 20px;
 }
 
+input {
+  font-family: 'Roboto', sans-serif;
+}
+
 input.btn.btn-block.edit {
   background-color: rgb(0, 168, 0);
 }
 
 input.btn.btn-block.submit {
-  background-color: rgb(60, 60, 255);
+  background-color: #0000ff;
 }
 
 

@@ -1,5 +1,9 @@
 <template>
-  <button @click="onClick" :style="{background: color}" class="btn">{{ btnText }} </button>  
+  <button
+    @click="onClick" 
+    :style="{background: color}" 
+    class="btn">{{ btnText }}
+  </button>  
 </template>
 
 <script>
@@ -8,7 +12,6 @@ export default {
   props: {
     btnText: {
       type: String,
-      color: String
     },
     color: {
       type: String
@@ -17,7 +20,7 @@ export default {
   methods: {
     onClick(e) {
       e.preventDefault()
-      console.log('clicked')
+      this.$emit('btn-click')
     }
   }
 }

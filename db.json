@@ -2,7 +2,7 @@
   "items": [
     {
       "id": "1",
-      "item": "Item 1s",
+      "item": "Item",
       "amount": "1"
     },
     {
@@ -10,14 +10,14 @@
       "item": "Item 2 without an amount"
     },
     {
+      "id": "MMY_lJ0",
       "item": "test ",
-      "amount": "cool",
-      "id": "MMY_lJ0"
+      "amount": "cool"
     },
     {
+      "id": "BBnCpY5",
       "item": "edit test",
-      "amount": "spicy",
-      "id": "zcJfOEO"
+      "amount": "test test"
     }
   ]
 }
